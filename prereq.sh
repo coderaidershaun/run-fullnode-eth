@@ -14,7 +14,9 @@ sudo apt-get -y install build-essential
 sudo apt-get -y install software-properties-common
 clear
 echo "Installing useful command line packages"
+sudo apt-get -y update
 sudo apt-get install net-tools
+sudo apt-get -y update
 sudo apt-get install iftop
 clear
 echo "Installing additional software"
@@ -66,10 +68,9 @@ echo "Installing reverse proxy for RPC"
 clear
 sudo apt -y install haproxy
 cd /
-cd /etc/haproxy/
-rm -rf haproxy.cfg
-wget https://multi-sniper.com/scripts/files/haproxy.cfg
+# cd /etc/haproxy/haproxy.cfg
+# rm -rf haproxy.cfg
+# wget https://multi-sniper.com/scripts/files/haproxy.cfg
+sudo cp /home/ubuntu/noderepo/haproxy.cfg /etc/haproxy/haproxy.cfg
 systemctl enable haproxy
 systemctl start haproxy
-sudo systemctl start geth
-rm -rf eth.sh

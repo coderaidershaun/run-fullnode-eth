@@ -1,0 +1,17 @@
+[Unit]
+Description=ETH Node startup script
+# After=network.target
+# After=systemd-user-sessions.service
+# After=network-online.target
+[Service]
+# User=spark
+# Type=simple
+# PIDFile=/run/my-service.pid
+ExecStart=/home/startNodeETH.sh start
+# ExecReload=/home/transang/startup.sh reload
+# ExecStop=/home/transang/startup.sh stop
+# TimeoutSec=30
+# Restart=on-failure
+# RestartSec=30
+# StartLimitInterval=350
+# StartLimitBurst=10
