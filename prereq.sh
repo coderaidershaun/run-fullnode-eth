@@ -71,6 +71,6 @@ cd /
 # cd /etc/haproxy/haproxy.cfg
 # rm -rf haproxy.cfg
 # wget https://multi-sniper.com/scripts/files/haproxy.cfg
-sudo cp /home/ubuntu/noderepo/haproxy.cfg /etc/haproxy/haproxy.cfg
+sudo cp /home/noderepo/haproxy.cfg /etc/haproxy/haproxy.cfg
 sudo systemctl enable haproxy
 sudo systemctl start haproxy

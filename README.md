@@ -16,7 +16,7 @@ cd noderepo
 3: Copy eth node services to correct location
 
 ```shell
-sudo cp /home/ubuntu/noderepo/startNodeETH.sh /home/startNodeETH.sh
+sudo cp /home/noderepo/startNodeETH.sh /home/startNodeETH.sh
 sudo chmod +x /home/startNodeETH.sh
 ```
 
