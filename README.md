@@ -10,14 +10,15 @@ git clone https://github.com/coderaidershaun/run-fullnode-eth.git noderepo
 
 ```shell
 cd noderepo
-./prereq.sh
+chmod +x prereq.sh
+sudo ./prereq.sh
 ```
 
 3: Copy eth node services to correct location
 
 ```shell
 sudo cp /home/noderepo/startNodeETH.sh /home/startNodeETH.sh
-sudo chmod +x /home/startNodeETH.sh
+chmod +x /home/startNodeETH.sh
 ```
 
 4: Create services
@@ -40,7 +41,9 @@ START:
 ```shell
 sudo systemctl daemon-reload
 sudo systemctl start eth-node
-sudo systemctl enable eth-node
+sudo systemctl status eth-node
+sudo journalctl -fu eth-node.service
+# sudo systemctl enable eth-node
 ```
 
 Useful service commands

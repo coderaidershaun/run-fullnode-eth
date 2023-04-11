@@ -1,5 +1,5 @@
 echo "Starting ETH Full Node Service: $(date)"
-geth \
+/home/ethfullnode/eth/build/bin/geth \
 --ipcpath ~/.ethereum/geth.ipc \
 --metrics \
 --http \
@@ -11,10 +11,10 @@ geth \
 --authrpc.vhosts localhost \
 --authrpc.jwtsecret /home/ethfullnode/eth/jwtsecret \
 --http.corsdomain '*' \
---http.api eth,net,web3,txpool \
+--http.api eth,net,web3,txpool,debug \
 --ws \
 --ws.addr 0.0.0.0 \
 --ws.origins '*' \
---ws.api eth,net,web3,txpool \
+--ws.api eth,net,web3,txpool,debug \
 --snapshot=false \
 --ulc.onlyannounce
