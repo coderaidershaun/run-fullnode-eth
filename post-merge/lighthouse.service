@@ -1,0 +1,14 @@
+[Unit]
+Description=Lighthouse consensus client
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/home/ubuntu
+User=ubuntu
+ExecStart=/usr/local/bin/lighthouse bn --network mainnet --execution-endpoint http://localhost:8551 --execution-jwt /tmp/jwtsecret --checkpoint-sync-url https://mainnet.checkpoint.sigp.io --disable-deposit-contract-sync
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

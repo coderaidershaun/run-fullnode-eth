@@ -1,4 +1,4 @@
-## Instructions
+## Starting
 
 1: Clone repo
 
@@ -21,7 +21,25 @@ sudo cp /home/noderepo/startNodeETH.sh /home/startNodeETH.sh
 chmod +x /home/startNodeETH.sh
 ```
 
-4: Create services
+## Create Lighthouse Beacon Service
+
+```shell
+cd /home
+sudo wget https://github.com/sigp/lighthouse/releases/download/v3.3.0/lighthouse-v3.3.0-x86_64-unknown-linux-gnu.tar.gz
+sudo tar zxvf lighthouse-v3.3.0-x86_64-unknown-linux-gnu.tar.gz
+sudo mv lighthouse /usr/local/bin/
+sudo nano /etc/systemd/system/lighthouse.service
+```
+
+Paste in Lighthouse Service data
+
+```shell
+sudo systemctl enable lighthouse
+sudo systemctl start lighthouse
+sudo systemctl lighthouse lighthouse
+```
+
+## Create ETH NODE Service
 
 ```shell
 sudo nano /etc/systemd/system/eth-node.service
@@ -46,7 +64,7 @@ sudo journalctl -fu eth-node.service
 # sudo systemctl enable eth-node
 ```
 
-Useful service commands
+### Useful Service Commands
 
 ```shell
 sudo cat /etc/systemd/system/geth.service
@@ -56,7 +74,18 @@ sudo systemctl status geth
 sudo systemctl start geth
 ```
 
-## Useful Commands
+### Useful CLI Commands
+
+Geth
+
+```shell
+geth attach
+  eth.syncing
+sudo netstat -tulpn # Shows networking ports being used
+sudo iftop # Shows bandwidth and network usage
+```
+
+Ubuntu
 
 ```shell
 df -h # Checks data utilized
