@@ -1,5 +1,5 @@
 echo "Starting ETH Full Node Service: $(date)"
-/home/ethfullnode/eth/build/bin/geth \
+geth \
 --ipcpath ~/.ethereum/geth.ipc \
 --metrics \
 --http \

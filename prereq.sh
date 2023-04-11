@@ -44,12 +44,12 @@ clear
 cd /
 cd home
 rm -rf ethfullnode
-mkdir ethfullnode
+sudo mkdir ethfullnode
 cd ethfullnode
-git clone https://github.com/ethereum/go-ethereum
-mv go-ethereum eth
+sudo git clone https://github.com/ethereum/go-ethereum
+sudo mv go-ethereum eth
 cd eth
-make geth
+sudo make geth
 ls -al build/bin/geth
 clear
 echo "Opening ports"
@@ -72,5 +72,5 @@ cd /
 # rm -rf haproxy.cfg
 # wget https://multi-sniper.com/scripts/files/haproxy.cfg
 sudo cp /home/ubuntu/noderepo/haproxy.cfg /etc/haproxy/haproxy.cfg
-systemctl enable haproxy
-systemctl start haproxy
+sudo systemctl enable haproxy
+sudo systemctl start haproxy

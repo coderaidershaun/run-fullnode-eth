@@ -13,19 +13,37 @@ cd noderepo
 ./prereq.sh
 ```
 
-3: Start GETH
+3: Copy eth node services to correct location
 
 ```shell
-sudo cat /etc/systemd/system/geth.service # If reading
-sudo nano /etc/systemd/system/geth.service # If editing
+sudo cp /home/ubuntu/noderepo/startNodeETH.sh /home/startNodeETH.sh
+sudo chmod +x /home/startNodeETH.sh
 ```
+
+4: Create services
 
 ```shell
-sudo systemctl start geth
-rm -rf eth.sh
+sudo nano /etc/systemd/system/eth-node.service
 ```
 
-4: Useful service commands
+Paste in eth-node.services to above
+
+STOP:
+
+```shell
+sudo systemctl stop eth-node
+sudo systemctl disable eth-node
+```
+
+START:
+
+```shell
+sudo systemctl daemon-reload
+sudo systemctl start eth-node
+sudo systemctl enable eth-node
+```
+
+Useful service commands
 
 ```shell
 sudo cat /etc/systemd/system/geth.service
