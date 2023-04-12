@@ -30,6 +30,22 @@ sudo apt-get -y upgrade geth
 sudo snap install go --classic
 ```
 
+### Create Geth Service
+
+```shell
+sudo nano /lib/systemd/system/geth.service
+```
+
+Paste in contents from geth.service
+
+```shell
+sudo systemctl daemon-reload
+sudo systemctl enable geth
+sudo systemctl start geth
+sudo systemctl status geth
+sudo journalctl -f -u geth
+```
+
 ### Create Lighthouse Service
 
 ```shell
@@ -50,22 +66,6 @@ sudo systemctl enable lighthouse
 sudo systemctl start lighthouse
 sudo systemctl status lighthouse
 sudo journalctl -f -u lighthouse
-```
-
-### Create Geth Service
-
-```shell
-sudo nano /lib/systemd/system/geth.service
-```
-
-Paste in contents from geth.service
-
-```shell
-sudo systemctl daemon-reload
-sudo systemctl enable geth
-sudo systemctl start geth
-sudo systemctl status geth
-sudo journalctl -f -u geth
 ```
 
 ### Check status commands
@@ -89,7 +89,6 @@ eth.syncing; # Should take about 30 mins to switch from false to showing an obje
 eth.blockNumber;
 eth.pendingTransactions;
 eth.hashrate;
-txpool.content;
 txpool.status;
 admin.nodeInfo;
 admin.peers;
