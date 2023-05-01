@@ -6,7 +6,7 @@ Wants=network-online.target
 [Service]
 WorkingDirectory=/home/ubuntu
 User=ubuntu
-ExecStart=/usr/bin/geth --authrpc.addr localhost --authrpc.port 8551 --authrpc.vhosts localhost --authrpc.jwtsecret /tmp/jwtsecret --syncmode snap --http --http.api personal,eth,net,web3,debug,txpool --http.addr 0.0.0.0 --http.corsdomain '*' --ws --ws.addr 0.0.0.0 --ws.origins '*' --ws.port 8546 --ws.api eth,net,web3,txpool,debug --ulc.onlyannounce --metrics --ipcpath ~/.ethereum/geth.ipc --maxpeers 500 --cache 18000
+ExecStart=/usr/bin/geth --http --http.api personal,eth,net,web3,debug,txpool,admin --authrpc.jwtsecret /home/ubuntu/ethereum/consensus/prysm/jwt.hex --ws --ws.port 8546 --ws.api eth,net,web3,txpool,debug --metrics --maxpeers 500
 Restart=always
 RestartSec=5s
 

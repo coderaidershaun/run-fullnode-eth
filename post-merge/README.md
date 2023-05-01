@@ -35,6 +35,7 @@ sudo snap install go --classic
 In your /home/ubuntu/ folder (~), create a folder structure as follows:
 
 $(/home/ubuntu/)
+
 ```shell
 mkdir ethereum
 cd ethereum
@@ -45,6 +46,7 @@ mkdir execution
 Then change directory into your consensus folder and install prysm:
 
 $(/home/ubuntu/ethereum/consensus/)
+
 ```shell
 mkdir prysm && cd prysm
 curl https://raw.githubusercontent.com/prysmaticlabs/prysm/master/prysm.sh --output prysm.sh && chmod +x prysm.sh
@@ -71,6 +73,7 @@ cd /home/ubuntu/ethereum/execution/
 Then start your Geth node:
 
 /home/ubuntu/ethereum/execution/
+
 ```shell
 geth --http --http.api eth,net,engine,admin --authrpc.jwtsecret -ENTER YOUR PATH FROM EARLIER TO YOUR JWT.hex file-
 ```
@@ -94,6 +97,7 @@ cd /home/ubuntu/ethereum/consensus/prysm/
 ```
 
 /home/ubuntu/ethereum/consensus/prysm/
+
 ```shell
 ./prysm.sh beacon-chain --execution-endpoint=http://localhost:8551 --jwt-secret=<ENTER PATH TO YOUR JWT FILE HERE> --suggested-fee-recipient=<ENTER ETHEREUM YOUR ADDRESS HERE>
 
@@ -112,24 +116,7 @@ Run Beacon node (takes a few days to sync)
 sudo nano /lib/systemd/system/prysm.service
 ```
 
------
-
-[Unit]
-Description=Prysm Beacon consensus client
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-WorkingDirectory=/home/ubuntu
-User=ubuntu
-ExecStart=/home/ubuntu/ethereum/consensus/prysm/prysm.sh beacon-chain --checkpoint-sync-url=https://sync-mainnet.beaconcha.in --genesis-beacon-api-url=https://sync-mainnet.beaconcha.in --execution-endpoint=http://localhost:8551 --jwt-secret=/home/ubuntu/ethereum/consensus/prysm/jwt.hex --suggested-fee-recipient=0x0d09aEC2D10F396fB59482644708CBd353798b87
-Restart=always
-RestartSec=5s
-
-[Install]
-WantedBy=multi-user.target
-
------
+Insert the code from the Prysm Service file.
 
 Then run the following:
 
@@ -148,24 +135,7 @@ Run Beacon node (takes a few days to sync)
 sudo nano /lib/systemd/system/geth.service
 ```
 
------
-
-[Unit]
-Description=Geth execution client
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-WorkingDirectory=/home/ubuntu/ethereum/execution
-User=ubuntu
-ExecStart=/usr/bin/geth --http --http.api personal,eth,net,web3,debug,txpool,admin --authrpc.jwtsecret /home/ubuntu/ethereum/consensus/prysm/jwt.hex --ws --ws.port 8546 --ws.api eth,net,web3,t>
-Restart=always
-RestartSec=5s
-
-[Install]
-WantedBy=multi-user.target
-
------
+The paste in the information from the geth.service file.
 
 Then run the following:
 
@@ -176,7 +146,7 @@ sudo systemctl start geth
 sudo journalctl -f -u geth
 ```
 
-Monitor progress
+**_Give your node a couple of days to sync and monitor it_**
 
 ```shell
 eth.syncing; # Should take about 30 mins to switch from false to showing an object
@@ -189,8 +159,8 @@ admin.peers;
 admin.nodeInfo.protocols;
 ```
 
-
 # Installing for Binance Smart Chain
+
 https://docs.bnbchain.org/docs/validator/fullnode/
 
 ### Preparations
@@ -210,9 +180,10 @@ Right click on the Endpoint and get the Url address. The endpoint may look somet
 
 Then past the address below on the wget.
 
-***This may take up to half a day, so using nohup + cli command + &***
+**_This may take up to half a day, so using nohup + cli command + &_**
 
 (~/bsc)
+
 ```shell
 nohup wget -O geth.tar.lz4 https://pub-c0627345c16f47ab858c9469133073a8.r2.dev/geth-20230416.tar.lz4 &
 ```
@@ -225,7 +196,7 @@ lsof nohup.out
 
 Remember you can also kill the process by using kill 'Insert PID'
 
-***Decompression takes around 2 hours so we run this in the background***
+**_Decompression takes around 2 hours so we run this in the background_**
 
 ```shell
 nohup tar -I lz4 -xvf geth.tar.lz4 &
